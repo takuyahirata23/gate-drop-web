@@ -1,6 +1,13 @@
-import type { Metadata } from "next";
+import Script from 'next/script'
+import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next"
+import Link from 'next/link'
+
 import "./globals.css";
+import Logo from "./../../public/logo.png";
+
+import type { Metadata } from "next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +34,35 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <header className="max-w-7xl mx-auto w-11/12 py-4">
+          <Link href={{ pathname: '/' }} className="flex items-center gap-x-1">
+            <Image src={Logo} alt="ActionStack Logo"
+              className="-ml-2 w-10 h-10"
+            />
+            <div className="font-semibold text-xl">Gate Drop</div>
+          </Link>
+        </header>
+        <main className="flex-1">
+          {children}
+        </main>
+        <footer className="max-w-7xl mx-auto w-11/12 flex items-center gap-x-4 py-4">
+          <Link href={{
+            pathname: '/privacy-policy'
+          }}>
+            Privacy policy
+          </Link>
+          <Link href={{
+            pathname: '/support'
+          }}>
+            Support
+          </Link>
+        </footer>
+        <Analytics />
+        {process.env.NODE_ENV === "production" && (
+          <Script src="https://microlens.app/events.js" data-site="6" defer />
+        )}
+      </body>
     </html>
   );
 }
