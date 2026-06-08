@@ -9,7 +9,7 @@ export default function Home() {
       <div className="grid gap-4 md:grid-cols-2 items-center">
         <div>
           <h1 className="font-semibold md:text-2xl">Track what matters with Gate Drop</h1>
-          <a href="https://apps.apple.com/us/app/actionstack/id6765557900">
+          <a href="https://apps.apple.com/us/app/gate-drop/id6776253294">
             <Image src={AppleStore} alt="Apple store"
               className="-ml-5 w-1/2"
             />
